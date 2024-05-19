@@ -208,7 +208,6 @@ public:
 
     // Xinef
     void SetWPPauseTimer(uint32 time) { mWPPauseTimer = time; }
-    void SetForcedCombatMove(float dist);
 
 private:
     bool mIsCharmed;
