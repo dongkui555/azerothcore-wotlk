@@ -80,15 +80,6 @@ void SmartScript::OnReset()
             InitTimer((*i));
             (*i).runOnce = false;
         }
-    }
-        }
-
-        if ((*i).priority != SmartScriptHolder::DEFAULT_PRIORITY)
-        {
-            (*i).priority = SmartScriptHolder::DEFAULT_PRIORITY;
-            mEventSortingRequired = true;
-        }
-    }
     ProcessEventsFor(SMART_EVENT_RESET);
     mLastInvoker.Clear();
     mCounterList.clear();
