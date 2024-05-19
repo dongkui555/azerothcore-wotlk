@@ -253,7 +253,7 @@ class spell_hun_generic_scaling : public AuraScript
             {
                 if (aurEff->GetMiscValue() == STAT_STAMINA)
                 {
-                    uint32 actStat = GetUnitOwner()->GetHealth();
+                    //uint32 actStat = GetUnitOwner()->GetHealth();
                     float hppct = GetUnitOwner()->GetHealthPct() / 100.0f;//当前血量百分比
                     GetEffect(aurEff->GetEffIndex())->ChangeAmount(newAmount, false);
                     //GetUnitOwner()->SetHealth(std::min<uint32>(GetUnitOwner()->GetMaxHealth(), actStat));
@@ -261,7 +261,7 @@ class spell_hun_generic_scaling : public AuraScript
                 }
                 else
                 {
-                    uint32 actStat = GetUnitOwner()->GetPower(POWER_MANA);
+                    //uint32 actStat = GetUnitOwner()->GetPower(POWER_MANA);
                     float pwpct = GetUnitOwner()->GetPowerPct(POWER_MANA) / 100.0f;//当前蓝量百分比
                     GetEffect(aurEff->GetEffIndex())->ChangeAmount(newAmount, false);
                     //GetUnitOwner()->SetPower(POWER_MANA, std::min<uint32>(GetUnitOwner()->GetMaxPower(POWER_MANA), actStat));

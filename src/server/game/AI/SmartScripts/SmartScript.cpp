@@ -80,6 +80,13 @@ void SmartScript::OnReset()
             InitTimer((*i));
             (*i).runOnce = false;
         }
+
+        if ((*i).priority != SmartScriptHolder::DEFAULT_PRIORITY)
+        {
+            (*i).priority = SmartScriptHolder::DEFAULT_PRIORITY;
+            mEventSortingRequired = true;
+        }
+    }
     ProcessEventsFor(SMART_EVENT_RESET);
     mLastInvoker.Clear();
     mCounterList.clear();
@@ -615,24 +622,41 @@ void SmartScript::ProcessAction(SmartScriptHolder& e, Unit* unit, uint32 var0, u
                     if (e.action.cast.castFlags & SMARTCAST_INTERRUPT_PREVIOUS)
                         me->InterruptNonMeleeSpells(false);
 
-                    // Flag usable only if caster has max dist set.
-                    if ((e.action.cast.castFlags & SMARTCAST_COMBAT_MOVE) && GetCasterMaxDist() > 0.0f && me->GetMaxPower(GetCasterPowerType()) > 0)
+                    SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(e.action.cast.spell);
+                    float distanceToTarget = me->GetDistance(target->ToUnit());
+                    float spellMaxRange = me->GetSpellMaxRangeForTarget(target->ToUnit(), spellInfo);
+                    float spellMinRange = me->GetSpellMinRangeForTarget(target->ToUnit(), spellInfo);
+                    float meleeRange = me->GetMeleeRange(target->ToUnit());
 
+                    bool isWithinLOSInMap = me->IsWithinLOSInMap(target->ToUnit());
+                    bool isWithinMeleeRange = distanceToTarget <= meleeRange;
+                    bool isRangedAttack = spellMaxRange > NOMINAL_MELEE_RANGE;
+                    bool isTargetRooted = target->ToUnit()->HasUnitState(UNIT_STATE_ROOT);
+                    // To prevent running back and forth when OOM, we must have more than 10% mana.
+                    bool canCastSpell = me->GetPowerPct(POWER_MANA) > 10.0f && spellInfo->CalcPowerCost(me, spellInfo->GetSchoolMask()) < (int32)me->GetPower(POWER_MANA) && !me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_SILENCED);
+                    bool isSpellIgnoreLOS = spellInfo->HasAttribute(SPELL_ATTR2_IGNORE_LINE_OF_SIGHT);
+
+                    // If target is rooted we move out of melee range before casting, but not further than spell max range.
+                    if (isWithinLOSInMap && isWithinMeleeRange && isRangedAttack && isTargetRooted && canCastSpell)
                     {
-                        // Check mana case only and operate movement accordingly, LoS and range is checked in targetet movement generator.
-                        SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(e.action.cast.spell);
-                        int32 currentPower = me->GetPower(GetCasterPowerType());
+                        failedSpellCast = true; // Mark spellcast as failed so we can retry it later
+                        float minDistance = std::max(meleeRange, spellMinRange) - distanceToTarget + NOMINAL_MELEE_RANGE;
+                        CAST_AI(SmartAI, me->AI())->MoveAway(std::min(minDistance, spellMaxRange));
+                        continue;
+                    }
 
-                    if ((spellInfo && (currentPower < spellInfo->CalcPowerCost(me, spellInfo->GetSchoolMask()) || me->IsSpellProhibited(spellInfo->GetSchoolMask()))) || me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_SILENCED))
-                        {
-                            SetCasterActualDist(0);
-                            CAST_AI(SmartAI, me->AI())->SetForcedCombatMove(0);
-                        }
-                        else if (GetCasterActualDist() == 0.0f && me->GetPowerPct(GetCasterPowerType()) > 30.0f)
-                        {
-                            RestoreCasterMaxDist();
-                            CAST_AI(SmartAI, me->AI())->SetForcedCombatMove(GetCasterActualDist());
-                        }
+                    // Let us not try to cast spell if we know it is going to fail anyway. Stick to chasing and continue.
+                    if (distanceToTarget > spellMaxRange && isWithinLOSInMap)
+                    {
+                        failedSpellCast = true;
+                        CAST_AI(SmartAI, me->AI())->SetCombatMove(true, std::max(spellMaxRange - NOMINAL_MELEE_RANGE, 0.0f));
+                        continue;
+                    }
+                    else if (distanceToTarget < spellMinRange || !(isWithinLOSInMap || isSpellIgnoreLOS))
+                    {
+                        failedSpellCast = true;
+                        CAST_AI(SmartAI, me->AI())->SetCombatMove(true);
+                        continue;
                     }
 
                     TriggerCastFlags triggerFlags = TRIGGERED_NONE;
@@ -668,13 +692,13 @@ void SmartScript::ProcessAction(SmartScriptHolder& e, Unit* unit, uint32 var0, u
                 }
             }
 
-            /*// If there is at least 1 failed cast and no successful casts at all, retry again on next loop
+            // If there is at least 1 failed cast and no successful casts at all, retry again on next loop
             if (failedSpellCast && !successfulSpellCast)
             {
                 RetryLater(e, true);
                 // Don't execute linked events
                 return;
-            }*/
+            }
 
             break;
         }
