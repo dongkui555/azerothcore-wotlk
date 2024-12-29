@@ -121,7 +121,6 @@ struct Yells
 
 static Yells Conversation[] =
 {
-<<<<<<< HEAD
     {14259, "是该收获答案了!让我们一路杀过去吧!", NPC_BRANN, 0},
     {14247, "休息一会，然后和我一起来启动这个东西。一切……马上就要真相大白了。好了，我们开始吧！", NPC_BRANN, 5000},
     {14248, "嗯，你们帮我看着点外面。我这样的强者只要锤两下就能搞定这破烂……", NPC_BRANN, 17000},
@@ -162,47 +161,6 @@ static Yells Conversation[] =
     {14273, "啊，现在我得花上很长时间来好好消化这些知识。我要在这里再待一会儿。谢谢你们。", NPC_BRANN, 549000},
     {13773, "收到，布莱恩布隆赞。进程终止。", NPC_ABEDNEUM, 559000},
     {0, "让我们看看入口附近的大门后面藏着什么。我会悄悄地潜过去。去那里和我碰面吧，我会带你们进去吧。", NPC_BRANN, 574000},
-=======
-    {14248, "Now keep an eye out! I'll have this licked in two shakes of a--", NPC_BRANN, 8000},
-    {13765, "Warning: life form pattern not recognized. Archival processing terminated. Continued interference will result in targeted response.", NPC_ABEDNEUM, 13000},
-    {14249, "Oh, that doesn't sound good. We might have a complication or two...", NPC_BRANN, 24000},
-    {13756, "Security breach in progress. Analysis of historical archives transferred to lower-priority queue. Countermeasures engaged.", NPC_KADDRAK, 30500},
-    {14250, "Ah, you want to play hardball, eh? That's just my game!", NPC_BRANN, 42000},
-    {14251, "Couple more minutes and I'll--", NPC_BRANN, 102000},
-    {13761, "Threat index threshold exceeded. Celestial archive aborted. Security level heightened.", NPC_MARNAK, 105000},
-    {14252, "Heightened? What's the good news?", NPC_BRANN, 113000},
-    {14253, "So that was the problem? Now I'm makin' progress...", NPC_BRANN, 201000},
-    {13767, "Critical threat index. Void analysis diverted. Initiating sanitization protocol.", NPC_ABEDNEUM, 207500 },
-    {14254, "Hang on! Nobody's gonna' be sanitized as long as I have a say in it!", NPC_BRANN, 214000},
-    {14255, "Ha! The old magic fingers finally won through! Now let's get down to--", NPC_BRANN, 305000},
-    {13768, "Alert: security fail-safes deactivated. Beginning memory purge and... ", NPC_ABEDNEUM, 310000},
-    //The fight is completed at this point.d
-    {14256, "Purge? No no no no no.. where did I-- Aha, this should do the trick...", NPC_BRANN, 316000},
-    {13769, "System online. Life form pattern recognized. Welcome, Branbronzan. Query?", NPC_ABEDNEUM, 322000},
-    {14263, "Query? What do you think I'm here for, tea and biscuits? Spill the beans already!", NPC_BRANN, 330000},
-    {14264, "Tell me how the dwarves came to be, and start at the beginning!", NPC_BRANN, 336000},
-    {13770, "Accessing prehistoric data... retrieved. In the beginning the earthen were created to--", NPC_ABEDNEUM, 341000},
-    {14265, "Right, right... I know the earthen were made from stone to shape the deep regions o' the world. But what about the anomalies? Matrix non-stabilizin' and what-not?", NPC_BRANN, 348000},
-    {13771, "Accessing... In the early stages of it's development cycle, Azeroth suffered infection by parasitic necrophotic symbiotes.", NPC_ABEDNEUM, 360000},
-    {14266, "Necrowhatinthe-- Speak bloody Common, will ye?", NPC_BRANN, 372000},
-    {13772, "Designation: Old Gods. Old Gods rendered all systems, including earthen, defenseless in order to facilitate assimilation. This matrix destabilization has been termed the Curse of Flesh. Effects of destabilization increased over time.", NPC_ABEDNEUM, 377000},
-    {14267, "Old Gods, huh? So they zapped the earthen with this Curse of Flesh... and then what?", NPC_BRANN, 400000},
-    {13757, "Accessing... Creators arrived to extirpate symbiotic infection. Assessment revealed that Old God infestation had grown malignant. Excising parasites would result in loss of host--", NPC_KADDRAK, 407500},
-    {14268, "If they killed the Old Gods, Azeroth would've been destroyed...", NPC_BRANN, 424000},
-    {13758, "Correct. Creators neutralized parasitic threat and contained it within the host. Forge of Wills and other systems were instituted to create new earthen. Safeguards were implemented, and protectors were appointed.", NPC_KADDRAK, 431000},
-    {14269, "What protectors?", NPC_BRANN, 450000},
-    {13759, "Designations: Aesir and Vanir. Or in the common nomenclature, storm and earth giants. Sentinel Loken designated supreme. Dragon Aspects appointed to monitor evolution on Azeroth.", NPC_KADDRAK, 453000},
-    {14270, "Aesir and Vanir... Okay, so the Forge o' Wills started makin' new earthen... but what happened to the old ones?", NPC_BRANN, 472000},
-    {13762, "Additional background is relevant to your query: following global combat between Aesir and Vanir--", NPC_MARNAK, 483000},
-    {14271, "Hold everything! The Aesir and Vanir went to war? Why?", NPC_BRANN, 489000},
-    {13763, "Unknown. Data suggests that impetus for global combat originated with prime designate Loken, who neutralized all remaining Aesir and Vanir, affecting termination of conflict. Prime designate Loken then initiated stasis of several seed races, including earthen, giants and vrykul, at designated holding facilities.", NPC_MARNAK, 495000},
-    {14272, "This Loken sounds like a nasty character. Glad we don't have to worry about the likes o' him anymore. So... if I'm understandin' ye right, the original earthen eventually woke up from this stasis, and by that time the destabili-whatever had turned 'em into proper dwarves. Or at least... dwarf ancestors.", NPC_BRANN, 519000},
-    {13764, "Essentially that is correct.", NPC_MARNAK, 543000},
-    {14273, "Well, now... that's a lot to digest. I'm gonna need some time to take all this in. Thank ye.", NPC_BRANN, 546000},
-    {13773, "Acknowledged, Branbronzan. Session terminated.", NPC_ABEDNEUM, 554000},
-    //Go to Sjonnir's door
-    {0, "I think it's time to see what's behind the door near the entrance. I'm going to sneak over there, nice and quiet. Meet me at the door and I'll get us in.", NPC_BRANN, 561000},
->>>>>>> 61521231eff1714cf6f245b120be884e87e835f7
 };
 
 class brann_bronzebeard : public CreatureScript
@@ -472,7 +430,6 @@ public:
                     break;
                 case ACTION_START_SJONNIR_FIGHT:
                     me->SetFaction(FACTION_FRIENDLY);
-<<<<<<< HEAD
                     me->Yell("嘿！别担心！老布莱恩在后面给你们加油呢！把这些该死的金属疙瘩给我挡住，让我来好好跟这台可爱的大机器谈谈，让它帮帮你们！", LANG_UNIVERSAL);
                     me->PlayDirectSound(14274);
                     SetEscortPaused(false);
@@ -481,7 +438,6 @@ public:
                     me->Yell("洛肯？！这下我们碰到大麻烦了……虽然铁矮人已经被全部摆平了，但我敢打赌不知道什么鬼地方还有台机器，正不停向外吐着铁维库人！", LANG_UNIVERSAL);
                     me->PlayDirectSound(14278);
                     events.ScheduleEvent(EVENT_END, 14000);
-=======
                     SetEscortPaused(false);
                     break;
                 case ACTION_SJONNIR_DEAD:
@@ -494,7 +450,6 @@ public:
                     me->SendMovementFlagUpdate();
                     events.ScheduleEvent(EVENT_SJONNIR_END_BRANN_YELL, 10000ms);
                     events.ScheduleEvent(EVENT_SJONNIR_END_BRANN_LAST_YELL, 22000ms);
->>>>>>> 61521231eff1714cf6f245b120be884e87e835f7
                     break;
                 case ACTION_SJONNIR_WIPE_START:
                     Reset();
@@ -744,14 +699,11 @@ public:
                         }
 
                         me->ReplaceAllNpcFlags(UNIT_NPC_FLAG_GOSSIP | UNIT_NPC_FLAG_QUESTGIVER);
-<<<<<<< HEAD
                         me->Yell("我会用熔炉来制造一些土灵，让他们保卫这里……但现在最大的挑战是：找到并阻止洛肯！", LANG_UNIVERSAL);
                         me->PlayDirectSound(14279);
-=======
                         me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_STAND);
                         me->SendMovementFlagUpdate();
 
->>>>>>> 61521231eff1714cf6f245b120be884e87e835f7
                         break;
                     }
                     case EVENT_TALK_FACE_CHANGE:
