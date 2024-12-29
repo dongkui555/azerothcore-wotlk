@@ -28,7 +28,11 @@
 #define GOSSIP_ITEM_2       "走吧布莱恩,别再给我们上历史课了!"
 #define GOSSIP_ITEM_3       "我们现在没时间管这个,我们必须继续前进."
 #define GOSSIP_ITEM_4       "我们和你在一起布莱恩！打开它！"
-#define TEXT_ID_START       13100
+#define TEXT_ID_START           13100
+#define TEXT_ID_TRIBUNAL_START  13101
+#define TEXT_ID_TRIBUNAL_END    14176
+#define TEXT_ID_SJONNIR_DOOR    13883
+#define TEXT_ID_SJONNIR_END     13308
 
 enum NPCs
 {
