@@ -693,6 +693,7 @@ public:
                         me->ReplaceAllNpcFlags(UNIT_NPC_FLAG_GOSSIP | UNIT_NPC_FLAG_QUESTGIVER);
                         me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_STAND);
                         me->SendMovementFlagUpdate();
+
                         break;
                     }
                     case EVENT_TALK_FACE_CHANGE:
